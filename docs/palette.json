@@ -1,0 +1,50 @@
+{
+  "name": "AwesomeContra 24",
+  "version": 1,
+  "note": "NES 硬件调色板的 24 色子集。全项目所有像素素材只允许使用 colors[].hex 中的值，由 tools/lint-palette.js 强制校验。透明度不占调色板槽位——PNG 的 alpha 通道负责镂空，alpha 只允许 0 或 255（不存在半透明像素）。",
+  "source": "颜色值取自 NES 2C02 标准调色板，括号内为原始硬件索引；这是通用硬件规格，不是任何商业游戏的素材。",
+  "rules": {
+    "alpha": "只允许 0 或 255",
+    "ramp": "每个材质用 3 阶明暗（dk / base / hi）；不足时向邻近色组借位，见 ramps",
+    "outline": "所有角色与可交互物件用 void 描边 1px；背景装饰不描边"
+  },
+  "colors": [
+    { "index": 0,  "name": "void",        "hex": "#000000", "nes": "$0D", "use": "轮廓、纯黑背景、暗部剪影、遮罩淡出" },
+    { "index": 1,  "name": "gray",        "hex": "#787878", "nes": "$2D", "use": "金属与岩石中间调、桥面、混凝土" },
+    { "index": 2,  "name": "white",       "hex": "#FCFCFC", "nes": "$30", "use": "高光、HUD 文本、爆炸核心、水花" },
+    { "index": 3,  "name": "metal_dk",    "hex": "#004058", "nes": "$0C", "use": "金属与岩石暗部（冷色阴影）、炮台底座" },
+    { "index": 4,  "name": "metal_hi",    "hex": "#BCBCBC", "nes": "$10", "use": "金属与岩石亮部、子弹壳、Boss 装甲板" },
+    { "index": 5,  "name": "skin",        "hex": "#FCA044", "nes": "$27", "use": "人物皮肤中间调" },
+    { "index": 6,  "name": "skin_hi",     "hex": "#FCE0A8", "nes": "$37", "use": "人物皮肤亮部、脸部高光" },
+    { "index": 7,  "name": "earth_dk",    "hex": "#503000", "nes": "$08", "use": "泥土与树干暗部；同时充当 skin 的暗部" },
+    { "index": 8,  "name": "earth",       "hex": "#AC7C00", "nes": "$18", "use": "泥土、树干、木箱中间调、沙袋" },
+    { "index": 9,  "name": "earth_hi",    "hex": "#F0D0B0", "nes": "$36", "use": "泥土与岩壁受光面、沙地" },
+    { "index": 10, "name": "hero_dk",     "hex": "#0000BC", "nes": "$02", "use": "玩家 1 服装暗部" },
+    { "index": 11, "name": "hero",        "hex": "#0058F8", "nes": "$12", "use": "玩家 1 服装主色（P2 换色为 enemy 组，见 ramps.player2）" },
+    { "index": 12, "name": "hero_hi",     "hex": "#6888FC", "nes": "$22", "use": "玩家 1 服装亮部、无敌闪烁帧" },
+    { "index": 13, "name": "enemy_dk",    "hex": "#A81000", "nes": "$06", "use": "敌兵制服暗部、血色警示" },
+    { "index": 14, "name": "enemy",       "hex": "#F83800", "nes": "$16", "use": "敌兵制服主色、Boss 弱点核心" },
+    { "index": 15, "name": "ember",       "hex": "#E45C10", "nes": "$17", "use": "火焰与爆炸外缘、火焰弹尾迹" },
+    { "index": 16, "name": "flame",       "hex": "#F8B800", "nes": "$28", "use": "火焰主色、子弹本体、道具胶囊" },
+    { "index": 17, "name": "flame_hi",    "hex": "#F8D878", "nes": "$38", "use": "火焰亮部、道具字母闪烁、枪口火光" },
+    { "index": 18, "name": "foliage_dk",  "hex": "#005800", "nes": "$0B", "use": "植被暗部、远景丛林剪影" },
+    { "index": 19, "name": "foliage",     "hex": "#00A800", "nes": "$1A", "use": "植被中间调、草地、棕榈叶" },
+    { "index": 20, "name": "foliage_hi",  "hex": "#58D854", "nes": "$2A", "use": "植被亮部、受光叶片边缘" },
+    { "index": 21, "name": "water_dk",    "hex": "#0000FC", "nes": "$01", "use": "深水、水下部分、夜空" },
+    { "index": 22, "name": "water",       "hex": "#0078F8", "nes": "$11", "use": "水体中间调、水面波纹" },
+    { "index": 23, "name": "sky",         "hex": "#3CBCFC", "nes": "$21", "use": "天空、远景大气、屏障道具光环" }
+  ],
+  "ramps": {
+    "skin":    ["earth_dk", "skin", "skin_hi"],
+    "metal":   ["metal_dk", "gray", "metal_hi"],
+    "rock":    ["metal_dk", "gray", "earth_hi"],
+    "earth":   ["earth_dk", "earth", "earth_hi"],
+    "foliage": ["foliage_dk", "foliage", "foliage_hi"],
+    "water":   ["water_dk", "water", "white"],
+    "fire":    ["ember", "flame", "flame_hi"],
+    "player1": ["hero_dk", "hero", "hero_hi"],
+    "player2": ["enemy_dk", "flame", "flame_hi"],
+    "enemy":   ["enemy_dk", "enemy", "flame"],
+    "sky":     ["water", "sky", "white"]
+  }
+}

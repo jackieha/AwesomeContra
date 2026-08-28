@@ -1,6 +1,6 @@
 # AwesomeContra
 
-一款横版跑射（run-and-gun）像素动作游戏，主形态为**微信小游戏**，同时保留普通微信小程序宿主与 H5 宿主。
+一款横版跑射（run-and-gun）像素动作游戏，发布形态为**微信小游戏**，另有 H5 宿主用于开发与 CI。
 
 - 逻辑分辨率 `256 × 224`，16×16 tile，整数倍缩放，24 色调色板
 - 自研零依赖 Canvas 2D 引擎，固定 1/60 步长，确定性输入回放
@@ -24,7 +24,7 @@
 ```
 /engine       平台无关内核（主循环、渲染、输入、音频、资源、对象池、PRNG）
 /game         玩法层（entities / systems / data / states）
-/platform     宿主适配：wx-minigame（发布）、web（开发与 CI）、wx-miniprogram（备用）
+/platform     宿主适配：wx-minigame（发布形态）、web（开发与 CI）
 /assets       图集 PNG+JSON、tilemap JSON、音频
 /tools        图集打包、调色板与宿主 API lint、关卡校验、素材生成
 /tests        unit（纯函数）、replay（确定性回放）、e2e（Playwright）
@@ -39,11 +39,11 @@
 
 | 文档 | 内容 |
 |---|---|
-| [`docs/design.md`](docs/design.md) | **主规范**：合规前提、三宿主架构、显示规范、玩法机制细则、性能预算、测试策略、路线图、常量表 |
+| [`docs/design.md`](docs/design.md) | **主规范**：合规前提、双宿主架构、显示规范、玩法机制细则、性能预算、测试策略、路线图、常量表 |
 | [`docs/formats.md`](docs/formats.md) | 数据格式规范，每种格式带可直接复制的完整示例：tilemap、图集、武器表、敌人表、输入回放 |
 | [`docs/palette.json`](docs/palette.json) | 24 色调色板（NES 风格子集），带语义名与明暗 ramp |
 | [`docs/adr/0001-engine-choice.md`](docs/adr/0001-engine-choice.md) | 为什么自研引擎而不用 Cocos / LayaAir / Egret |
-| [`docs/adr/0002-minigame-vs-miniprogram.md`](docs/adr/0002-minigame-vs-miniprogram.md) | 为什么主形态是小游戏，以及如何保留普通小程序宿主 |
+| [`docs/adr/0002-minigame-vs-miniprogram.md`](docs/adr/0002-minigame-vs-miniprogram.md) | 为什么发布形态是小游戏，以及为什么不做普通小程序宿主 |
 
 任何实现与 `docs/design.md` 冲突时，**先改文档再改代码**。文档里的常量（`docs/design.md` §11）是单一真源，不允许在别处重复字面量。
 
